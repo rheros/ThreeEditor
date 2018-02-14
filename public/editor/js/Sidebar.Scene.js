@@ -5,10 +5,41 @@
 Sidebar.Scene = function ( editor ) {
 
 	var signals = editor.signals;
+	var config = editor.config;
 
 	var container = new UI.Panel();
 	container.setBorderTop( '0' );
 	container.setPaddingTop( '20px' );
+
+	//scene savePath
+	var scenePathRow = new UI.Row();
+	var scenePath = new UI.Input().setWidth( '150px' );
+	scenePath.setValue( config.getKey( 'sceneSavePath' ) );
+
+	scenePath.onChange( function () {
+
+		var value = this.getValue();
+		config.setKey( 'sceneSavePath', value )
+
+	} )
+	scenePathRow.add( new UI.Text( "sceneDir" ).setWidth( '90px' ) )
+	scenePathRow.add( scenePath )
+	container.add( scenePathRow )
+
+	//scene name
+	var sceneNameRow = new UI.Row();
+	var sceneName = new UI.Input().setWidth( '150px' );
+	sceneName.setValue( config.getKey( 'sceneName' ) );
+
+	sceneName.onChange( function () {
+
+		var value = this.getValue();
+		config.setKey( 'sceneName', value )
+
+	} )
+	sceneNameRow.add( new UI.Text( "SceneName" ).setWidth( '90px' ) )
+	sceneNameRow.add( sceneName )
+	container.add( sceneNameRow )
 
 	// outliner
 
@@ -29,7 +60,7 @@ Sidebar.Scene = function ( editor ) {
 
 			var array = [];
 
-			for ( var i = 0; i < material.length; i ++ ) {
+			for ( var i = 0; i < material.length; i++ ) {
 
 				array.push( material[ i ].name );
 
@@ -46,11 +77,11 @@ Sidebar.Scene = function ( editor ) {
 	function escapeHTML( html ) {
 
 		return html
-			.replace( /&/g, '&amp;' )
-			.replace( /"/g, '&quot;' )
-			.replace( /'/g, '&#39;' )
-			.replace( /</g, '&lt;' )
-			.replace( />/g, '&gt;' );
+		.replace( /&/g, '&amp;' )
+		.replace( /"/g, '&quot;' )
+		.replace( /'/g, '&#39;' )
+		.replace( /</g, '&lt;' )
+		.replace( />/g, '&gt;' );
 
 	}
 
@@ -198,7 +229,7 @@ Sidebar.Scene = function ( editor ) {
 
 		( function addObjects( objects, pad ) {
 
-			for ( var i = 0, l = objects.length; i < l; i ++ ) {
+			for ( var i = 0, l = objects.length; i < l; i++ ) {
 
 				var object = objects[ i ];
 
@@ -276,7 +307,7 @@ Sidebar.Scene = function ( editor ) {
 
 		var options = outliner.options;
 
-		for ( var i = 0; i < options.length; i ++ ) {
+		for ( var i = 0; i < options.length; i++ ) {
 
 			var option = options[ i ];
 
@@ -298,7 +329,9 @@ Sidebar.Scene = function ( editor ) {
 		outliner.setValue( object !== null ? object.id : null );
 
 	} );
-
+	signals.changeSceneName.add( function () {
+		sceneName.setValue( config.getKey( 'sceneName' ) );
+	} )
 	return container;
 
 };

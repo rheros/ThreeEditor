@@ -73,6 +73,7 @@ var Editor = function () {
 		changeCameraCtrlType: new Signal(),
 		changeWheelSpeed: new Signal(),
 		changeFocusSize: new Signal(),
+		changeSceneName:new Signal(),
 
 	};
 
@@ -491,7 +492,6 @@ Editor.prototype = {
 		this.camera.copy( camera );
 		this.camera.aspect = this.DEFAULT_CAMERA.aspect;
 		this.camera.updateProjectionMatrix();
-
 		this.history.fromJSON( json.history );
 		this.scripts = json.scripts;
 
@@ -522,7 +522,7 @@ Editor.prototype = {
 
 		return {
 
-			metadata: {},
+			metadata: {type:"app"},
 			project: {
 				gammaInput: this.config.getKey( 'project/renderer/gammaInput' ),
 				gammaOutput: this.config.getKey( 'project/renderer/gammaOutput' ),

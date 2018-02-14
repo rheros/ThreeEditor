@@ -9,6 +9,8 @@ Sidebar.Settings.Controllers = function ( editor ) {
 
 	var container = new UI.Div();
 
+
+
 	//camera ctrl type
 	var options = {
 		'Default': 'Default',
@@ -103,6 +105,7 @@ Sidebar.Settings.Controllers = function ( editor ) {
 	sizeRow.add( new UI.Text( "focusSize" ).setWidth( '90px' ) );
 	sizeRow.add( focusSize );
 	container.add( sizeRow );
+
 
 	return container
 }

@@ -18,7 +18,7 @@ Sidebar.Geometry.TorusGeometry = function ( editor, object ) {
 
 	radiusRow.add( new UI.Text( 'Radius' ).setWidth( '90px' ) );
 	radiusRow.add( radius );
-
+	
 	container.add( radiusRow );
 
 	// tube

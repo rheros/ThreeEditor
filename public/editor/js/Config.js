@@ -10,6 +10,8 @@ var Config = function ( name ) {
 		'cameraCtrlType': 'Default',
 		'wheelSpeed': 100,
 		'focusSize':0.8,
+		'sceneName':'',
+		'sceneSavePath':'scenes',
 
 		'theme': 'css/light.css',
 
